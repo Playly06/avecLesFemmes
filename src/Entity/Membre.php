@@ -22,8 +22,10 @@ class Membre extends AbstractInformationsIdentification
     #[ORM\Column(length: 255)]
     private ?string $nomRole = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nomGroupement = null;
+    #[ORM\ManyToOne(inversedBy: 'membres')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Groupement $groupement = null;
+
 
     public function getId(): ?int
     {
@@ -66,14 +68,14 @@ class Membre extends AbstractInformationsIdentification
         return $this;
     }
 
-    public function getNomGroupement(): ?string
+    public function getGroupement(): ?Groupement
     {
-        return $this->nomGroupement;
+        return $this->groupement;
     }
 
-    public function setNomGroupement(string $nomGroupement): static
+    public function setGroupement(?Groupement $groupement): static
     {
-        $this->nomGroupement = $nomGroupement;
+        $this->groupement = $groupement;
 
         return $this;
     }
