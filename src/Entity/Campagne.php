@@ -42,6 +42,10 @@ class Campagne extends AbstractNom
     #[ORM\JoinColumn(nullable: false)]
     private ?Type $type = null;
 
+    #[ORM\ManyToOne(inversedBy: 'campagnes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Groupement $groupe = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -151,6 +155,18 @@ class Campagne extends AbstractNom
     public function setType(?Type $type): static
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getGroupe(): ?Groupement
+    {
+        return $this->groupe;
+    }
+
+    public function setGroupe(?Groupement $groupe): static
+    {
+        $this->groupe = $groupe;
 
         return $this;
     }
