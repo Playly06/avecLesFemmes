@@ -28,23 +28,9 @@ class Campagne extends AbstractNom
     #[ORM\Column(nullable: true)]
     private ?\DateTime $updatedAt = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nomGroupement = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $nomType = null;
-
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Groupement $groupement = null;
-
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Type $type = null;
-
-    #[ORM\ManyToOne(inversedBy: 'campagnes')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Groupement $groupe = null;
 
     public function getId(): ?int
     {
@@ -111,30 +97,6 @@ class Campagne extends AbstractNom
         return $this;
     }
 
-    public function getNomGroupement(): ?string
-    {
-        return $this->nomGroupement;
-    }
-
-    public function setNomGroupement(string $nomGroupement): static
-    {
-        $this->nomRole = $nomGroupement;
-
-        return $this;
-    }
-
-    public function getNomType(): ?string
-    {
-        return $this->nomType;
-    }
-
-    public function setNomType(string $nomType): static
-    {
-        $this->nomType = $nomType;
-
-        return $this;
-    }
-
     public function getGroupement(): ?Groupement
     {
         return $this->groupement;
@@ -143,30 +105,6 @@ class Campagne extends AbstractNom
     public function setGroupement(?Groupement $groupement): static
     {
         $this->groupement = $groupement;
-
-        return $this;
-    }
-
-    public function getType(): ?Type
-    {
-        return $this->type;
-    }
-
-    public function setType(?Type $type): static
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    public function getGroupe(): ?Groupement
-    {
-        return $this->groupe;
-    }
-
-    public function setGroupe(?Groupement $groupe): static
-    {
-        $this->groupe = $groupe;
 
         return $this;
     }
