@@ -32,7 +32,7 @@ class Campagne extends AbstractNom
     private ?\DateTime $updatedAt = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nomRole = null;
+    private ?string $nomGroupement = null;
 
     #[ORM\Column(length: 255)]
     private ?string $nomType = null;
@@ -114,14 +114,14 @@ class Campagne extends AbstractNom
         return $this;
     }
 
-    public function getNomRole(): ?string
+    public function getNomGroupement(): ?string
     {
-        return $this->nomRole;
+        return $this->nomGroupement;
     }
 
-    public function setNomRole(string $nomRole): static
+    public function setNomGroupement(string $nomGroupement): static
     {
-        $this->nomRole = $nomRole;
+        $this->nomRole = $nomGroupement;
 
         return $this;
     }
