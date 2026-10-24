@@ -18,7 +18,7 @@ class Type extends AbstractNom
     /**
      * @var Collection<int, Campagne>
      */
-    #[ORM\OneToMany(targetEntity: Campagne::class, mappedBy: 'typ')]
+    #[ORM\OneToMany(targetEntity: Campagne::class, mappedBy: 'type')]
     private Collection $campagnes;
 
     public function __construct()

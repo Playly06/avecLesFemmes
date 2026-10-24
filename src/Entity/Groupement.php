@@ -18,7 +18,7 @@ class Groupement extends AbstractInformationsIdentification
     /**
      * @var Collection<int, Campagne>
      */
-    #[ORM\OneToMany(targetEntity: Campagne::class, mappedBy: 'groupe')]
+    #[ORM\OneToMany(targetEntity: Campagne::class, mappedBy: 'groupement')]
     private Collection $campagnes;
 
     public function __construct()
