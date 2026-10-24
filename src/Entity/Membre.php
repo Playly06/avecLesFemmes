@@ -19,12 +19,14 @@ class Membre extends AbstractInformationsIdentification
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nomRole = null;
 
     #[ORM\ManyToOne(inversedBy: 'membres')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Groupement $groupement = null;
+
+    #[ORM\ManyToOne(inversedBy: 'membres')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Role $role = null;
 
 
     public function getId(): ?int
@@ -56,18 +58,6 @@ class Membre extends AbstractInformationsIdentification
         return $this;
     }
 
-    public function getNomRole(): ?string
-    {
-        return $this->nomRole;
-    }
-
-    public function setNomRole(string $nomRole): static
-    {
-        $this->nomRole = $nomRole;
-
-        return $this;
-    }
-
     public function getGroupement(): ?Groupement
     {
         return $this->groupement;
@@ -76,6 +66,18 @@ class Membre extends AbstractInformationsIdentification
     public function setGroupement(?Groupement $groupement): static
     {
         $this->groupement = $groupement;
+
+        return $this;
+    }
+
+    public function getRole(): ?Role
+    {
+        return $this->role;
+    }
+
+    public function setRole(?Role $role): static
+    {
+        $this->role = $role;
 
         return $this;
     }
