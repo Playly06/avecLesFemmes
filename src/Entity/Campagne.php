@@ -13,6 +13,9 @@ class Campagne extends AbstractNom
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 255)]
+    protected ?string $nom = null;
+
     #[ORM\Column]
     private ?\DateTime $dateDebut = null;
 
@@ -31,6 +34,18 @@ class Campagne extends AbstractNom
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
+
+        return $this;
     }
 
     public function getDateDebut(): ?\DateTime
