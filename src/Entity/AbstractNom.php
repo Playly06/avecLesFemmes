@@ -6,7 +6,7 @@ use App\Repository\AbstractNomRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AbstractNomRepository::class)]
-#[ORM\MappedSuperClass]
+#[ORM\MappedSuperclass]
 abstract class AbstractNom
 {
 

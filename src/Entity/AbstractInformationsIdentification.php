@@ -6,7 +6,7 @@ use App\Repository\AbstractInformationsIdentificationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: AbstractInformationsIdentificationRepository::class)]
-#[ORM\MappedSuperClass]
+#[ORM\MappedSuperclass]
 class AbstractInformationsIdentification extends AbstractNom
 {
     #[ORM\Column(length: 255)]
