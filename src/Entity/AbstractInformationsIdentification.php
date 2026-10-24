@@ -9,19 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\MappedSuperClass]
 class AbstractInformationsIdentification extends AbstractNom
 {
-    private ?int $id = null;
-
     #[ORM\Column(length: 255)]
     protected ?string $telephone = null;
 
     #[ORM\Column(length: 255)]
     protected ?string $addresse = null;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     public function getTelephone(): ?string
     {
         return $this->telephone;
