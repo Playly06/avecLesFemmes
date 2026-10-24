@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CampagneRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CampagneRepository::class)]
@@ -35,6 +37,17 @@ class Campagne extends AbstractNom
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Type $type = null;
+
+    /**
+     * @var Collection<int, Contenir>
+     */
+    #[ORM\ManyToMany(targetEntity: Contenir::class, mappedBy: 'campagne')]
+    private Collection $contenirs;
+
+    public function __construct()
+    {
+        $this->contenirs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -121,6 +134,33 @@ class Campagne extends AbstractNom
     public function setType(?Type $type): static
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contenir>
+     */
+    public function getContenirs(): Collection
+    {
+        return $this->contenirs;
+    }
+
+    public function addContenir(Contenir $contenir): static
+    {
+        if (!$this->contenirs->contains($contenir)) {
+            $this->contenirs->add($contenir);
+            $contenir->addCampagne($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContenir(Contenir $contenir): static
+    {
+        if ($this->contenirs->removeElement($contenir)) {
+            $contenir->removeCampagne($this);
+        }
 
         return $this;
     }

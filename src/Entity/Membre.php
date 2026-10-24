@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MembreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MembreRepository::class)]
@@ -27,6 +29,17 @@ class Membre extends AbstractInformationsIdentification
     #[ORM\ManyToOne(inversedBy: 'membres')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Role $role = null;
+
+    /**
+     * @var Collection<int, Contenir>
+     */
+    #[ORM\ManyToMany(targetEntity: Contenir::class, mappedBy: 'membre')]
+    private Collection $contenirs;
+
+    public function __construct()
+    {
+        $this->contenirs = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -78,6 +91,33 @@ class Membre extends AbstractInformationsIdentification
     public function setRole(?Role $role): static
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contenir>
+     */
+    public function getContenirs(): Collection
+    {
+        return $this->contenirs;
+    }
+
+    public function addContenir(Contenir $contenir): static
+    {
+        if (!$this->contenirs->contains($contenir)) {
+            $this->contenirs->add($contenir);
+            $contenir->addMembre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContenir(Contenir $contenir): static
+    {
+        if ($this->contenirs->removeElement($contenir)) {
+            $contenir->removeMembre($this);
+        }
 
         return $this;
     }
