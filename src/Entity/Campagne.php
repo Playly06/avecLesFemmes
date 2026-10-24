@@ -31,6 +31,12 @@ class Campagne extends AbstractNom
     #[ORM\Column(nullable: true)]
     private ?\DateTime $updatedAt = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $nomRole = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $nomType = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +110,30 @@ class Campagne extends AbstractNom
     public function setUpdatedAt(?\DateTime $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getNomRole(): ?string
+    {
+        return $this->nomRole;
+    }
+
+    public function setNomRole(string $nomRole): static
+    {
+        $this->nomRole = $nomRole;
+
+        return $this;
+    }
+
+    public function getNomType(): ?string
+    {
+        return $this->nomType;
+    }
+
+    public function setNomType(string $nomType): static
+    {
+        $this->nomType = $nomType;
 
         return $this;
     }
