@@ -86,7 +86,11 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "sarrIbrahima:db:create":["@php bin/console doctrine:database:delete","@php bin/console doctrine:database:create"],
+        "sarrIbrahima:cache:clear":["@php bin/console cache:clear"],
+        "sarrIbrahima:make:entity":["@php bin/console make:entity"],
+        "sarrIbrahima:migration":["@php bin/console make:migration"]
     },
     "conflict": {
         "symfony/symfony": "*"
