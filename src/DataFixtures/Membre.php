@@ -14,6 +14,9 @@ class Membre extends Fixture
         $product.setPassword("passer1234");
         $role=new Role();
         $product.setRole($role);
+        $groupement=new Groupement();
+        $product.setGroupement($groupement);
+
         $manager->persist($product);
 
         $manager->flush();
