@@ -11,7 +11,6 @@ class Role extends Fixture
     {
         $product = new Product();
         $product.setnom("manager");
-        $member=new Member();
         $manager->persist($product);
 
         $manager->flush();
